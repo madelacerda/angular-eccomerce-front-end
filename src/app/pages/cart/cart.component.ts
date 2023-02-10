@@ -9,20 +9,20 @@ import { CartService } from "src/app/services/cart.service";
 export class CartComponent implements OnInit {
   cart: Cart = {
     items: [
-      {
-        product: "https://via.placeholder.com/150",
-        name: "Anillo de Oro",
-        price: 3000,
-        quantity: 1,
-        id: 1,
-      },
-      {
-        product: "https://via.placeholder.com/150",
-        name: "Collar de Oro",
-        price: 5000,
-        quantity: 2,
-        id: 2,
-      },
+      // {
+      //   product: "https://via.placeholder.com/150",
+      //   name: "Anillo de Oro",
+      //   price: 3000,
+      //   quantity: 1,
+      //   _id: 1,
+      // },
+      // {
+      //   product: "https://via.placeholder.com/150",
+      //   name: "Collar de Oro",
+      //   price: 5000,
+      //   quantity: 2,
+      //   _id: 2,
+      // },
     ],
   };
   dataSource: Array<CartItem> = [];
