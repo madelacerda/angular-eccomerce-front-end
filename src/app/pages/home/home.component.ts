@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProducts(): void {
     this.productsSubscription = this.storeService
-      .getAllProducts(this.count, this.sort)
+      .getAllProducts()
       .subscribe((_products) => {
         this.products = _products;
       });
