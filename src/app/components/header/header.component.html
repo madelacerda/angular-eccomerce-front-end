@@ -16,8 +16,8 @@
           *ngFor="let item of cart.items"
           class="flex justify-between font-light mb-2"
         >
-          {{ item.nombre }} x {{ item.cantidad }}
-          <span class="font-bold">{{ item.precio | currency }} </span>
+          {{ item.name }} x {{ item.quantity }}
+          <span class="font-bold">{{ item.price | currency }} </span>
         </div>
       </div>
       <div class="flex justify-between py-3 font-light">

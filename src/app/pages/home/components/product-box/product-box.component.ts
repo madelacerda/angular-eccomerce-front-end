@@ -7,14 +7,7 @@ import { Product } from "src/app/models/product.model";
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-  product: Product | undefined = {
-    id: 1,
-    titulo: "anillo de oro",
-    precio: 3000,
-    categoria: "anillo",
-    descripcion: "anillo de oro hecho a mano",
-    imagen: "https://via.placeholder.com/150",
-  };
+  @Input() product: Product | undefined;
 
   @Output() addToCart = new EventEmitter();
 

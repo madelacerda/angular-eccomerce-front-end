@@ -11,16 +11,16 @@ export class CartComponent implements OnInit {
     items: [
       {
         product: "https://via.placeholder.com/150",
-        nombre: "Anillo de Oro",
-        precio: 3000,
-        cantidad: 1,
+        name: "Anillo de Oro",
+        price: 3000,
+        quantity: 1,
         id: 1,
       },
       {
         product: "https://via.placeholder.com/150",
-        nombre: "Collar de Oro",
-        precio: 5000,
-        cantidad: 2,
+        name: "Collar de Oro",
+        price: 5000,
+        quantity: 2,
         id: 2,
       },
     ],
@@ -28,9 +28,9 @@ export class CartComponent implements OnInit {
   dataSource: Array<CartItem> = [];
   displayedColumns: Array<string> = [
     "product",
-    "nombre",
-    "precio",
-    "cantidad",
+    "name",
+    "price",
+    "quantity",
     "total",
     "action",
   ];

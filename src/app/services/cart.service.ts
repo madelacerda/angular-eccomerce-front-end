@@ -15,7 +15,7 @@ export class CartService {
 
     const itemInCart = items.find((_item) => _item.id === item.id);
     if (itemInCart) {
-      itemInCart.cantidad += 1;
+      itemInCart.quantity += 1;
     } else {
       items.push(item);
     }
@@ -28,8 +28,8 @@ export class CartService {
     let itemForRemoval: CartItem | undefined;
     let filteredItems = this.cart.value.items.map((_item) => {
       if (_item.id === item.id) {
-        _item.cantidad--;
-        if (_item.cantidad === 0) {
+        _item.quantity--;
+        if (_item.quantity === 0) {
           itemForRemoval = _item;
         }
       }
@@ -48,7 +48,7 @@ export class CartService {
 
   getTotal(items: Array<CartItem>): number {
     return items
-      .map((item) => item.precio * item.cantidad)
+      .map((item) => item.price * item.quantity)
       .reduce((prev, current) => prev + current, 0);
   }
 

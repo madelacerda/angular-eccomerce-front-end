@@ -19,7 +19,7 @@ export class HeaderComponent {
     this._cart = cart;
 
     this.itemsQuantity = cart.items
-      .map((item) => item.cantidad)
+      .map((item) => item.quantity)
       .reduce((prev, current) => prev + current, 0);
   }
 
