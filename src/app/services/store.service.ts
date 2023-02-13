@@ -15,4 +15,16 @@ export class StoreService {
   getAllProducts(): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(`${STORE_BASE_URL}`);
   }
+
+  public addProduct(product: Product) {
+    return this.httpClient.post<Product>(`${STORE_BASE_URL}`, product);
+  }
+
+  public deleteProduct(productId: any) {
+    return this.httpClient.delete(`${STORE_BASE_URL}` + productId, productId);
+  }
+
+  public getProductDetailsById(id: any) {
+    return this.httpClient.get<Product>(`${STORE_BASE_URL}/id/` + id);
+  }
 }

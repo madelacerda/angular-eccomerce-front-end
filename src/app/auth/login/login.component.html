@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-content>
+    <form #loginForm="ngForm" (submit)="userPost()">
+      <h2>Iniciar Sesion</h2>
+      <mat-error *ngIf="">
+        The username and password were not recognized
+      </mat-error>
+      <mat-form-field>
+        <input
+          [(ngModel)]="user.email"
+          matInput
+          placeholder="Email"
+          name="email"
+          required
+        />
+        <mat-error> Please provide a valid email address </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          [(ngModel)]="user.password"
+          matInput
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
+        <mat-error> Please provide a valid password </mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!loginForm.form.valid"
+      >
+        Iniciar Sesion
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

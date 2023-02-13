@@ -1,0 +1,41 @@
+<mat-drawer-container
+  [autosize]="true"
+  class="min-h-full max-w-7xl mx-auto border-x"
+>
+  <mat-drawer-content class="p-6 flex flex-col">
+    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+      <mat-form-field appearance="outline" class="w-max">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="product.title" name="productName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-max">
+        <mat-label>Precio</mat-label>
+        <input matInput [(ngModel)]="product.price" name="productPrice" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-max">
+        <mat-label>Descripcion</mat-label>
+        <input
+          matInput
+          [(ngModel)]="product.description"
+          name="productDescription"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-max">
+        <mat-label>Categoria</mat-label>
+        <input matInput [(ngModel)]="product.category" name="productCategory" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-max">
+        <mat-label>Url Imagen</mat-label>
+        <input matInput [(ngModel)]="product.image" name="productImage" />
+      </mat-form-field>
+      <div>
+        <button type="reset" class="mr-3" mat-stroked-button color="primary">
+          Limpiar Formulario
+        </button>
+        <button type="submit" mat-stroked-button color="primary">
+          Agregar Producto
+        </button>
+      </div>
+    </form>
+  </mat-drawer-content>
+</mat-drawer-container>

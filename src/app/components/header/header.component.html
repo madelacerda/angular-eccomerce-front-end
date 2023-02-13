@@ -1,10 +1,64 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
-  <a routerLink="home">Cleo Atelier</a>
-  <button mat-icon-button [mat-menu-trigger-for]="menu">
-    <mat-icon [matBadge]="itemsQuantity" matBadgeColor="warn"
-      >shopping_cart</mat-icon
-    >
+  <button mat-button [matMenuTriggerFor]="belowMenu">
+    <mat-icon>menu</mat-icon>
+    Menu
   </button>
+
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item routerLink="home">
+      <mat-icon>home</mat-icon>Inicio
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="menuproductos">
+      <mat-icon>library_books</mat-icon>Productos
+    </button>
+  </mat-menu>
+
+  <mat-menu #menuproductos="matMenu" yPosition="below">
+    <button mat-menu-item routerLink="productos">
+      <mat-icon> list_alt</mat-icon>Ver todos los productos
+    </button>
+    <ng-container *ngIf="this.getGuard()">
+      <button mat-menu-item routerLink="listado-producto">
+        <mat-icon>assignment</mat-icon>Administrar Productos
+      </button>
+      <button mat-menu-item routerLink="agregar-producto">
+        <mat-icon> list_alt</mat-icon>Agregar Producto
+      </button>
+    </ng-container>
+  </mat-menu>
+
+  <a routerLink="home">Cleo Atelier</a>
+  <div>
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon [matBadge]="itemsQuantity" matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+  </div>
+  <ng-container *ngIf="this.getGuard(); else loggedIn">
+    <button mat-icon-button [mat-menu-trigger-for]="menulogged">
+      <mat-icon color="primary">account_circle</mat-icon>
+    </button>
+    <mat-menu #menulogged>
+      <button (click)="logOut()">
+        <mat-icon>logout</mat-icon>Cerrar Sesion
+      </button>
+    </mat-menu>
+  </ng-container>
+  <ng-template #loggedIn>
+    <button mat-icon-button [mat-menu-trigger-for]="loginmenu">
+      <mat-icon color="primary">account_circle</mat-icon>
+    </button>
+    <mat-menu yPosition="below" #loginmenu="matMenu">
+      <button mat-menu-item routerLink="login">
+        <mat-icon>login</mat-icon>Iniciar Sesion
+      </button>
+      <button mat-menu-item routerLink="register">
+        <mat-icon>app_registration</mat-icon>Registrate
+      </button>
+    </mat-menu>
+  </ng-template>
+
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">

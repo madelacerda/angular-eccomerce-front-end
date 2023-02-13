@@ -1,3 +1,4 @@
+import { OktaAuth } from "@okta/okta-auth-js";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -5,6 +6,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatButtonModule } from "@angular/material/button";
+
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatExpansionModule } from "@angular/material/expansion";
@@ -13,7 +15,10 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTableModule } from "@angular/material/table";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
+import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -26,9 +31,16 @@ import { CartComponent } from "./pages/cart/cart.component";
 import { CartService } from "./services/cart.service";
 import { StoreService } from "./services/store.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ProductListComponentComponent } from "./pages/product/product-list.component/product-list.component.component";
+import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
+import { AdministradorProductosComponent } from "./pages/product/administrador-productos/administrador-productos.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { LoginComponent } from "./auth/login/login.component";
 
 @NgModule({
   declarations: [
+    LoginComponent,
+    RegisterComponent,
     AppComponent,
     HeaderComponent,
     HomeComponent,
@@ -36,8 +48,13 @@ import { HttpClientModule } from "@angular/common/http";
     FiltersComponent,
     ProductBoxComponent,
     CartComponent,
+    ProductListComponentComponent,
+    ProductAddComponent,
+    AdministradorProductosComponent,
   ],
   imports: [
+    FormsModule,
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -54,8 +71,19 @@ import { HttpClientModule } from "@angular/common/http";
     MatBadgeModule,
     MatSnackBarModule,
     HttpClientModule,
+    MatFormFieldModule,
   ],
-  providers: [CartService, StoreService],
+  providers: [
+    CartService,
+    StoreService,
+    {
+      provide: OktaAuth,
+      useValue: new OktaAuth({
+        issuer: "https://{yourOktaDomain}/oauth2/default",
+        clientId: "{clientId}",
+      }),
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
