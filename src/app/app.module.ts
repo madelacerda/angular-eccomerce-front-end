@@ -1,4 +1,3 @@
-import { OktaAuth } from "@okta/okta-auth-js";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -73,17 +72,7 @@ import { LoginComponent } from "./auth/login/login.component";
     HttpClientModule,
     MatFormFieldModule,
   ],
-  providers: [
-    CartService,
-    StoreService,
-    {
-      provide: OktaAuth,
-      useValue: new OktaAuth({
-        issuer: "https://{yourOktaDomain}/oauth2/default",
-        clientId: "{clientId}",
-      }),
-    },
-  ],
+  providers: [CartService, StoreService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
