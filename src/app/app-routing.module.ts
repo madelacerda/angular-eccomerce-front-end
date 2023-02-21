@@ -7,6 +7,7 @@ import { CartComponent } from "./pages/cart/cart.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { AdministradorProductosComponent } from "./pages/product/administrador-productos/administrador-productos.component";
 import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
+import { ProductEditComponent } from "./pages/product/product-edit/product-edit.component";
 import { ProductListComponentComponent } from "./pages/product/product-list.component/product-list.component.component";
 import { ProductResolveService } from "./services/product-resolve.service";
 
@@ -34,6 +35,11 @@ const routes: Routes = [
     resolve: {
       product: ProductResolveService,
     },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "editar-producto",
+    component: ProductEditComponent,
     canActivate: [AuthGuard],
   },
   {

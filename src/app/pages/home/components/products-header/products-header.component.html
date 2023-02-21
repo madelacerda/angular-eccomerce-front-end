@@ -2,7 +2,7 @@
   <div class="flex justify-between">
     <div>
       <button mat-button [mat-menu-trigger-for]="sortByMenu">
-        Ordenar por {{ sort }}
+        Ordenar Precio por {{ sort }}
         <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #sortByMenu="matMenu">
@@ -17,9 +17,9 @@
           <mat-icon>expand_more</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button (click)="onItemsUpdated(12)" mat-menu-item>12</button>
-          <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
-          <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
+          <button (click)="onItemsUpdated(5)" mat-menu-item>5</button>
+          <button (click)="onItemsUpdated(10)" mat-menu-item>10</button>
+          <button (click)="onItemsUpdated(15)" mat-menu-item>15</button>
         </mat-menu>
       </div>
       <button (click)="onColumnsUpdated(1)">

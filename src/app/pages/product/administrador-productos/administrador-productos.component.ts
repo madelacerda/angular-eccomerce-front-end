@@ -3,6 +3,8 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Product } from "src/app/models/product.model";
 import { StoreService } from "src/app/services/store.service";
+import { ProductEditComponent } from "../product-edit/product-edit.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-administrador-productos",
@@ -22,7 +24,11 @@ export class AdministradorProductosComponent {
     "Eliminar",
   ];
 
-  constructor(private productService: StoreService, private router: Router) {}
+  constructor(
+    private productService: StoreService,
+    private router: Router,
+    private dialogRef: MatDialog
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -33,7 +39,7 @@ export class AdministradorProductosComponent {
   public getAllProducts() {
     this.productService.getAllProducts().subscribe(
       (resp: Product[]) => {
-        console.log(resp);
+        //  console.log(resp);
         this.productDetails = resp;
       },
       (error: HttpErrorResponse) => {
@@ -55,8 +61,13 @@ export class AdministradorProductosComponent {
     );
   }
 
-  public editProductDetails(productId: any) {
-    console.log(productId);
-    this.router.navigate(["/agregar-producto", { productId: productId }]);
+  public editProductDetails(data: any) {
+    const modal = this.dialogRef.open(ProductEditComponent);
+    modal.componentInstance.product = data;
+  }
+
+  openDialog() {
+    this.dialogRef.closeAll();
+    this.dialogRef.open(ProductEditComponent);
   }
 }

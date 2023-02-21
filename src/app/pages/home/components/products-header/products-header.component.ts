@@ -10,7 +10,7 @@ export class ProductsHeaderComponent {
   @Output() itemsCountChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<string>();
   sort = "Selecciona una opcion";
-  itemsShowCount = 12;
+  itemsShowCount = 20;
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;

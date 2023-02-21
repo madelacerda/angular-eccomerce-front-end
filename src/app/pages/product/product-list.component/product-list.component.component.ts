@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Product } from "src/app/models/product.model";
 import { CartService } from "src/app/services/cart.service";
-import { Subscription } from "rxjs";
+import { Subscription, timeout } from "rxjs";
 import { StoreService } from "src/app/services/store.service";
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 355, 4: 350 };
 
@@ -16,8 +16,9 @@ export class ProductListComponentComponent {
   category: string | undefined;
   products: Array<Product> | undefined;
   sort = "desc";
-  count = "12";
+  count = "1";
   productsSubscription: Subscription | undefined;
+  productStorage: Array<Product> | undefined;
 
   constructor(
     private cartService: CartService,
@@ -52,14 +53,29 @@ export class ProductListComponentComponent {
       _id: product._id,
     });
   }
-  onItemsCountChange(newCount: number): void {
+
+  reloadArray() {
+    this.getProducts();
+  }
+  async onItemsCountChange(newCount: number) {
     this.count = newCount.toString();
     this.getProducts;
+    this.products = this.products?.slice(0, newCount);
+    if (newCount != this.products?.length) {
+      this.reloadArray();
+      setTimeout(() => {
+        this.products = this.products?.slice(0, newCount);
+      }, 350);
+    }
   }
 
   onSortChange(newSort: string): void {
     this.sort = newSort;
     this.getProducts;
+    const productos = this.products;
+    newSort === "desc"
+      ? productos?.sort((a, b) => a.price - b.price)
+      : productos?.sort((b, a) => a.price - b.price);
   }
 
   ngOnDestroy(): void {

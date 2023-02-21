@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
@@ -35,6 +36,7 @@ import { ProductAddComponent } from "./pages/product/product-add/product-add.com
 import { AdministradorProductosComponent } from "./pages/product/administrador-productos/administrador-productos.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { LoginComponent } from "./auth/login/login.component";
+import { ProductEditComponent } from "./pages/product/product-edit/product-edit.component";
 
 @NgModule({
   declarations: [
@@ -50,8 +52,10 @@ import { LoginComponent } from "./auth/login/login.component";
     ProductListComponentComponent,
     ProductAddComponent,
     AdministradorProductosComponent,
+    ProductEditComponent,
   ],
   imports: [
+    MatDialogModule,
     FormsModule,
     MatInputModule,
     BrowserModule,
