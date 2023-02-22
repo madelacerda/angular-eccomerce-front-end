@@ -62,6 +62,7 @@ export class AdministradorProductosComponent {
   }
 
   public editProductDetails(data: any) {
+    console.log(data);
     const modal = this.dialogRef.open(ProductEditComponent);
     modal.componentInstance.product = data;
   }

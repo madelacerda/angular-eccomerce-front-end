@@ -20,8 +20,8 @@ export class StoreService {
     return this.httpClient.post<Product>(`${STORE_BASE_URL}`, product);
   }
 
-  public editProduct(productId: any) {
-    return this.httpClient.put(`${STORE_BASE_URL}` + productId, productId);
+  public editProduct(productId: any, body: any) {
+    return this.httpClient.put(`${STORE_BASE_URL}` + productId, body);
   }
 
   public deleteProduct(productId: any) {

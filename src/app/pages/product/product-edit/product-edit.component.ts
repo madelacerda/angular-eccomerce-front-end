@@ -1,8 +1,9 @@
 import { Component, Input, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { NgForm } from "@angular/forms";
 import { Product } from "src/app/models/product.model";
 import { StoreService } from "src/app/services/store.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-product-edit",
@@ -11,8 +12,12 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class ProductEditComponent {
   productDetails: Product[] = [];
-  constructor(private productService: StoreService) {}
+  constructor(
+    private productService: StoreService,
+    private dialogRef: MatDialog
+  ) {}
   product = {
+    _id: "",
     title: "",
     price: 0,
     description: "",
@@ -41,11 +46,12 @@ export class ProductEditComponent {
     );
   }
 
-  public updateProduct(productId: any) {
-    console.log("hola", productId.value);
-    this.productService.editProduct(this.product).subscribe(
+  public updateProduct(productForm: NgForm) {
+    console.log(productForm);
+    this.productService.editProduct(this.product._id, this.product).subscribe(
       (response) => {
         console.log(response);
+        this.dialogRef.closeAll();
       },
       (error: HttpErrorResponse) => {
         console.log(error);
