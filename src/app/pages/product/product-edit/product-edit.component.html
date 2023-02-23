@@ -12,10 +12,11 @@
         <mat-label>Precio</mat-label>
         <input
           matInput
-          type="text"
-          pattern="[0-9]*"
+          type="number"
+          ng-pattern="/^[0-9]+$/"
           [(ngModel)]="product.price"
           name="price"
+          required
         />
         <mat-error *ngIf="productForm.controls['price'].invalid"
           >El valor ingresado no es un número</mat-error
