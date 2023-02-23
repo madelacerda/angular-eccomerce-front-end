@@ -4,28 +4,42 @@
 >
   <mat-drawer-content class="p-6 flex flex-col">
     <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
-      <mat-form-field appearance="outline" class="w-max">
+      <mat-form-field appearance="outline" class="w-max my-3">
         <mat-label>Nombre</mat-label>
         <input matInput [(ngModel)]="product.title" name="title" />
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-max">
+      <mat-form-field appearance="outline" class="w-max my-3">
         <mat-label>Precio</mat-label>
-        <input matInput [(ngModel)]="product.price" name="price" />
+        <input
+          matInput
+          type="text"
+          pattern="[0-9]*"
+          [(ngModel)]="product.price"
+          name="price"
+        />
+        <mat-error *ngIf="productForm.controls['price'].invalid"
+          >El valor ingresado no es un número</mat-error
+        >
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-max">
+      <mat-form-field appearance="outline" class="w-max my-3">
         <mat-label>Descripcion</mat-label>
         <input matInput [(ngModel)]="product.description" name="description" />
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-max">
+      <mat-form-field appearance="outline" class="w-max my-3">
         <mat-label>Categoria</mat-label>
         <input matInput [(ngModel)]="product.category" name="category" />
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-max">
+      <mat-form-field appearance="outline" class="w-max my-3">
         <mat-label>Url Imagen</mat-label>
         <input matInput [(ngModel)]="product.image" name="image" />
       </mat-form-field>
       <div>
-        <button type="reset" class="mr-3" mat-stroked-button color="primary">
+        <button
+          type="reset"
+          class="mr-3 my-3"
+          mat-stroked-button
+          color="primary"
+        >
           Limpiar Formulario
         </button>
         <button type="submit" mat-stroked-button color="primary">
